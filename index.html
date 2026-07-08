@@ -71,6 +71,11 @@
             text-align: left;
         }
 
+        .input-with-btn {
+            display: flex;
+            gap: 10px;
+        }
+
         label {
             display: block;
             margin-bottom: 5px;
@@ -94,6 +99,18 @@
             outline: none;
         }
 
+        .btn-gps {
+            width: auto;
+            padding: 0 15px;
+            background-color: #28a745;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .btn-gps:hover {
+            background-color: #218838;
+        }
+
         button {
             width: 100%;
             padding: 15px;
@@ -113,17 +130,47 @@
             background-color: #b31717;
         }
 
+        /* GAYA TABEL HARGA (PRICING) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #1c1c1c;
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #161616;
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: #28a745;
+            text-align: right;
+        }
+
         .gallery-img {
-            width: 30%; /* Lebar setiap foto 30% dari lebar layar, jadi bisa muat 3 foto kiri-kanan */
-            height: 180px; /* Tinggi disesuaikan agar terlihat proporsional secara horizontal */
-            object-fit: cover; /* Menjaga agar foto tidak distorsi atau peyang */
+            width: 30%;
+            height: 180px;
+            object-fit: cover;
             border-radius: 6px;
             border: 1px solid var(--border-color);
             transition: 0.3s;
         }
 
         .gallery-img:hover {
-            transform: scale(1.05); /* Efek hover: foto membesar sedikit saat kursor melintas */
+            transform: scale(1.05);
             border-color: var(--primary-red);
         }
 
@@ -175,8 +222,11 @@
             </div>
 
             <div class="form-group">
-                <label for="lokasi">Lokasi Detail Mogok:</label>
-                <input type="text" id="lokasi" placeholder="Contoh: Depan Kopi Toko Djawa Gerlong Hilir">
+                <label for="lokasi">Lokasi Detail Mogok / Koordinat GPS:</label>
+                <div class="input-with-btn">
+                    <input type="text" id="lokasi" placeholder="Contoh: Depan Kopi Toko Djawa Gerlong Hilir">
+                    <button type="button" class="btn-gps" onclick="ambilLokasiGPS()">📍 Ambil GPS</button>
+                </div>
             </div>
 
             <div class="form-group">
@@ -187,7 +237,39 @@
             <button onclick="kirimPanggilan()">Kirim Panggilan Darurat</button>
         </div>
 
-        <!-- 2. PORTOFOLIO / PEKERJAAN BENGKEL KAMI -->
+        <!-- 2. ESTIMASI BIAYA JASA -->
+        <div class="section-card">
+            <h2>💰 ESTIMASI BIAYA JASA DASAR</h2>
+            <p style="margin-top: -5px; margin-bottom: 15px; color: var(--text-muted);">Harga transparan, jujur, dan tidak ada biaya siluman di lokasi kejadian.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jenis Layanan Darurat / Perbaikan</th>
+                        <th style="text-align: right;">Perkiraan Biaya</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Biaya Jemput & Cek Kerusakan Awal (Gerlong & Sekitarnya)</td>
+                        <td class="price-tag">Rp 25.000</td>
+                    </tr>
+                    <tr>
+                        <td>Penanganan Ringan (Aki Drop, Bersihkan Karbu/Busi, Oli)</td>
+                        <td class="price-tag">Rp 35.000 - Rp 50.000</td>
+                    </tr>
+                    <tr>
+                        <td>Perbaikan Penggerak (Putus Rantai / Pasang Rantai Baru)</td>
+                        <td class="price-tag">Rp 40.000</td>
+                    </tr>
+                    <tr>
+                        <td>Penanganan Masalah Berat / Bongkar Suku Cadang</td>
+                        <td class="price-tag">Hubungi Tim</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. PORTOFOLIO / PEKERJAAN BENGKEL KAMI -->
         <div class="section-card">
             <h2>🛠️ PEKERJAAN & LAYANAN KAMI</h2>
             <p>Berikut dokumentasi proyek dan penanganan dari tim OVERHOUL SOCIETY:</p>
@@ -198,7 +280,7 @@
             </div>
         </div>
 
-        <!-- 3. TESTIMONI -->
+        <!-- 4. TESTIMONI -->
         <div class="section-card">
             <h2>💬 APA KATA MEREKA?</h2>
             <div class="testi-item">
@@ -218,13 +300,31 @@
     </footer>
 
     <script>
+        // FUNGSI OTOMATIS AMBIL KOORDINAT GPS KONSUMEN
+        function ambilLokasiGPS() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+                    // Bikin format link google maps otomatis
+                    var linkMaps = "https://www.google.com/maps?q=" + lat + "," + lon;
+                    document.getElementById('lokasi').value = linkMaps;
+                    alert("Lokasi GPS berhasil dikunci! Link peta otomatis masuk ke kolom lokasi.");
+                }, function(error) {
+                    alert("Gagal mengambil GPS. Pastikan izin lokasi di HP/Browser Anda sudah aktif, atau ketik lokasi secara manual.");
+                });
+            } else {
+                alert("Browser Anda tidak mendukung fitur deteksi lokasi GPS otomatis.");
+            }
+        }
+
         function kirimPanggilan() {
             var nama = document.getElementById('nama').value;
             var kontak = document.getElementById('kontak').value;
             var lokasi = document.getElementById('lokasi').value;
             var motor = document.getElementById('motor').value;
 
-            // NOMOR WHATSAPP (Format 62)
+            // NOMOR WHATSAPP UTAMA (Format 62)
             var nomorWA = "6283872814954"; 
 
             if (nama == "" || kontak == "" || lokasi == "" || motor == "") {
@@ -235,7 +335,7 @@
             var teksPesan = "🚨 *EMERGENCY CALL - OVERHOUL SOCIETY* 🚨\n\n" +
                             "*Nama Customer:* " + nama + "\n" +
                             "*No. Kontak:* " + kontak + "\n" +
-                            "*Lokasi Mogok:* " + lokasi + "\n" +
+                            "*Lokasi / Maps:* " + lokasi + "\n" +
                             "*Motor & Kendala:* " + motor + "\n\n" +
                             "Mohon segera direspon, terima kasih!";
 

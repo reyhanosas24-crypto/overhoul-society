@@ -113,19 +113,19 @@
             background-color: #b31717;
         }
 
-  .gallery-img {
-    width: 30%; /* Leubar unggal fotona 30% tina leubar layar, jadi bisa muat 3 foto kénca-tuhu */
-    height: 180px; /* Jangkungna urang leutikan saeutik sangkan mantes horizontal */
-    object-fit: cover; /* Angger dipaké ambeh fotona teu peyang */
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    transition: 0.3s;
-}
+        .gallery-img {
+            width: 30%; /* Lebar setiap foto 30% dari lebar layar, jadi bisa muat 3 foto kiri-kanan */
+            height: 180px; /* Tinggi disesuaikan agar terlihat proporsional secara horizontal */
+            object-fit: cover; /* Menjaga agar foto tidak distorsi atau peyang */
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+        }
 
-.gallery-img:hover {
-    transform: scale(1.05); /* Pemanis: pas mouse ngaliwat, fotona rada ngagedéan saeutik */
-    border-color: var(--primary-red);
-}
+        .gallery-img:hover {
+            transform: scale(1.05); /* Efek hover: foto membesar sedikit saat kursor melintas */
+            border-color: var(--primary-red);
+        }
 
         .testi-item {
             border-left: 3px solid var(--primary-red);
@@ -154,7 +154,7 @@
 
     <header>
         <h1>OVERHOUL SOCIETY</h1>
-        <p>Jemput Bola, Beresin di Tempat. No Ribet, No Drama.</p>
+        <p>Layanan Jemput, Selesai di Tempat. Tanpa Ribet, Tanpa Drama.</p>
     </header>
 
     <div class="wrapper">
@@ -162,7 +162,7 @@
         <!-- 1. SOS EMERGENCY SERVICE FORM -->
         <div class="section-card">
             <h2>🚨 EMERGENCY CALL (PANGGIL MONTIR)</h2>
-            <p style="margin-top: -5px; margin-bottom: 20px; color: var(--text-muted);">Mogok di jalan daerah Gerlong? Eusian form di handap, montir langsung meluncur.</p>
+            <p style="margin-top: -5px; margin-bottom: 20px; color: var(--text-muted);">Mogok di jalan sekitar daerah Gerlong? Isi form di bawah ini, montir langsung meluncur.</p>
             
             <div class="form-group">
                 <label for="nama">Nama Lengkap / Panggilan:</label>
@@ -181,7 +181,7 @@
 
             <div class="form-group">
                 <label for="motor">Jenis Motor & Kronologi Masalah:</label>
-                <textarea id="motor" placeholder="Contoh: Vespa LX, ngadadak pareum pas ngaliwat jalan mudun..."></textarea>
+                <textarea id="motor" placeholder="Contoh: Vespa LX, tiba-tiba mati saat melewati jalan turunan..."></textarea>
             </div>
 
             <button onclick="kirimPanggilan()">Kirim Panggilan Darurat</button>
@@ -190,9 +190,9 @@
         <!-- 2. PORTFOLIO / OUR GARAGE WORK -->
         <div class="section-card">
             <h2>🛠️ OUR WORK & SERVICES</h2>
-            <p>Ieu dokumentasi projekan sarta penanganan ti tim OVERHOUL SOCIETY:</p>
+            <p>Berikut dokumentasi proyek dan penanganan dari tim OVERHOUL SOCIETY:</p>
             <div class="gallery-grid">
-               <img src="gantirante.jpeg" alt="Ganti Rante" class="gallery-img">
+                <img src="gantirante.jpeg" alt="Ganti Rantai" class="gallery-img">
                 <img src="ganti-seher.jpeg" alt="Ganti Seher" class="gallery-img">
                 <img src="turunmesin.jpeg" alt="Turun Mesin" class="gallery-img">
             </div>
@@ -202,11 +202,11 @@
         <div class="section-card">
             <h2>💬 APA KATA MEREKA?</h2>
             <div class="testi-item">
-                "Asli mantap, mogok jam 11 peuting di Gerlong langsung di-otewe keun ku Overhoul Society. Gancang jeung bener di tempat!"
-                <div class="testi-user">- Budak Kuliah UPI</div>
+                "Asli mantap, mogok jam 11 malam di Gerlong langsung di-otewe-kan oleh Overhoul Society. Cepat dan tuntas di tempat!"
+                <div class="testi-user">- Mahasiswa UPI</div>
             </div>
             <div class="testi-item">
-                "Montirna barudak ngora oge, asik diajak ngobrol sarta ngarti pisan panyakit motor custom."
+                "Montirnya anak muda juga, asik diajak ngobrol dan paham banget masalah motor custom."
                 <div class="testi-user">- Skater Bandung</div>
             </div>
         </div>
@@ -224,11 +224,11 @@
             var lokasi = document.getElementById('lokasi').value;
             var motor = document.getElementById('motor').value;
 
-            // GANTI KU NOMOR WA MANEH (Format 62)
+            // NOMOR WHATSAPP (Format 62)
             var nomorWA = "6283872814954"; 
 
             if (nama == "" || kontak == "" || lokasi == "" || motor == "") {
-                alert("Punten mang, eusian heula data sing jentre ambeh montir teu salah alamat!");
+                alert("Mohon maaf, isi terlebih dahulu semua data dengan jelas agar montir tidak salah alamat!");
                 return;
             }
 
@@ -237,7 +237,7 @@
                             "*No. Kontak:* " + kontak + "\n" +
                             "*Lokasi Mogok:* " + lokasi + "\n" +
                             "*Motor & Kendala:* " + motor + "\n\n" +
-                            "Mohon segera direspon, hatur nuhun!";
+                            "Mohon segera direspon, terima kasih!";
 
             var urlWA = "https://api.whatsapp.com/send?phone=" + nomorWA + "&text=" + encodeURIComponent(teksPesan);
             window.open(urlWA, '_blank');

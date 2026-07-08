@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVERHOUL SOCIETY - Emergency Service & Garage</title>
+    <style>
+        /* COLOR PALETTE: DARK GARAGE VIBE */
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --primary-red: #e62121;
+            --text-main: #ffffff;
+            --text-muted: #8a8a8a;
+            --border-color: #262626;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 3px;
+            color: var(--primary-red);
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* SECTION CARD STYLE */
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary-red);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* FORM STYLE */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #d1d1d1;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            background-color: #1c1c1c;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-red);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-red);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #b31717;
+        }
+
+  .gallery-img {
+    width: 30%; /* Leubar unggal fotona 30% tina leubar layar, jadi bisa muat 3 foto kénca-tuhu */
+    height: 180px; /* Jangkungna urang leutikan saeutik sangkan mantes horizontal */
+    object-fit: cover; /* Angger dipaké ambeh fotona teu peyang */
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    transition: 0.3s;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05); /* Pemanis: pas mouse ngaliwat, fotona rada ngagedéan saeutik */
+    border-color: var(--primary-red);
+}
+
+        .testi-item {
+            border-left: 3px solid var(--primary-red);
+            background-color: #1c1c1c;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .testi-user {
+            font-weight: bold;
+            color: var(--primary-red);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>OVERHOUL SOCIETY</h1>
+        <p>Jemput Bola, Beresin di Tempat. No Ribet, No Drama.</p>
+    </header>
+
+    <div class="wrapper">
+
+        <!-- 1. SOS EMERGENCY SERVICE FORM -->
+        <div class="section-card">
+            <h2>🚨 EMERGENCY CALL (PANGGIL MONTIR)</h2>
+            <p style="margin-top: -5px; margin-bottom: 20px; color: var(--text-muted);">Mogok di jalan daerah Gerlong? Eusian form di handap, montir langsung meluncur.</p>
+            
+            <div class="form-group">
+                <label for="nama">Nama Lengkap / Panggilan:</label>
+                <input type="text" id="nama" placeholder="Contoh: Reyhan">
+            </div>
+
+            <div class="form-group">
+                <label for="kontak">Nomor HP / WhatsApp Kamu:</label>
+                <input type="tel" id="kontak" placeholder="Contoh: 08123456789">
+            </div>
+
+            <div class="form-group">
+                <label for="lokasi">Lokasi Detail Mogok:</label>
+                <input type="text" id="lokasi" placeholder="Contoh: Depan Kopi Toko Djawa Gerlong Hilir">
+            </div>
+
+            <div class="form-group">
+                <label for="motor">Jenis Motor & Kronologi Masalah:</label>
+                <textarea id="motor" placeholder="Contoh: Vespa LX, ngadadak pareum pas ngaliwat jalan mudun..."></textarea>
+            </div>
+
+            <button onclick="kirimPanggilan()">Kirim Panggilan Darurat</button>
+        </div>
+
+        <!-- 2. PORTFOLIO / OUR GARAGE WORK -->
+        <div class="section-card">
+            <h2>🛠️ OUR WORK & SERVICES</h2>
+            <p>Ieu dokumentasi projekan sarta penanganan ti tim OVERHOUL SOCIETY:</p>
+            <div class="gallery-grid">
+               <img src="gantirante.jpeg" alt="Ganti Rante" class="gallery-img">
+                <img src="ganti-seher.jpeg" alt="Ganti Seher" class="gallery-img">
+                <img src="turunmesin.jpeg" alt="Turun Mesin" class="gallery-img">
+            </div>
+        </div>
+
+        <!-- 3. TESTIMONI -->
+        <div class="section-card">
+            <h2>💬 APA KATA MEREKA?</h2>
+            <div class="testi-item">
+                "Asli mantap, mogok jam 11 peuting di Gerlong langsung di-otewe keun ku Overhoul Society. Gancang jeung bener di tempat!"
+                <div class="testi-user">- Budak Kuliah UPI</div>
+            </div>
+            <div class="testi-item">
+                "Montirna barudak ngora oge, asik diajak ngobrol sarta ngarti pisan panyakit motor custom."
+                <div class="testi-user">- Skater Bandung</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 OVERHOUL SOCIETY. Built by IT Student. All Rights Reserved.
+    </footer>
+
+    <script>
+        function kirimPanggilan() {
+            var nama = document.getElementById('nama').value;
+            var kontak = document.getElementById('kontak').value;
+            var lokasi = document.getElementById('lokasi').value;
+            var motor = document.getElementById('motor').value;
+
+            // GANTI KU NOMOR WA MANEH (Format 62)
+            var nomorWA = "6283872814954"; 
+
+            if (nama == "" || kontak == "" || lokasi == "" || motor == "") {
+                alert("Punten mang, eusian heula data sing jentre ambeh montir teu salah alamat!");
+                return;
+            }
+
+            var teksPesan = "🚨 *EMERGENCY CALL - OVERHOUL SOCIETY* 🚨\n\n" +
+                            "*Nama Customer:* " + nama + "\n" +
+                            "*No. Kontak:* " + kontak + "\n" +
+                            "*Lokasi Mogok:* " + lokasi + "\n" +
+                            "*Motor & Kendala:* " + motor + "\n\n" +
+                            "Mohon segera direspon, hatur nuhun!";
+
+            var urlWA = "https://api.whatsapp.com/send?phone=" + nomorWA + "&text=" + encodeURIComponent(teksPesan);
+            window.open(urlWA, '_blank');
+        }
+    </script>
+
+</body>
+</html>

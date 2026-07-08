@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- OPEN GRAPH / PRATINJAU WHATSAPP & SOSIAL MEDIA -->
+    <meta property="og:title" content="OVERHOUL SOCIETY - Layanan Darurat & Bengkel Motor">
+    <meta property="og:description" content="Layanan Jemput, Selesai di Tempat. Mogok di daerah Gerlong? Klik untuk Panggil Montir Darurat Berbasis GPS!">
+    <meta property="og:image" content="https://reyhanosas24-crypto.github.io/overhoul-society/turunmesin.jpeg">
+    <meta property="og:url" content="https://reyhanosas24-crypto.github.io/overhoul-society/">
+    <meta property="og:type" content="website">
+
     <title>OVERHOUL SOCIETY - Layanan Darurat & Bengkel Motor</title>
     <style>
         /* PALET WARNA: NUANSA BENGKEL GELAP */
@@ -306,7 +314,6 @@
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var lat = position.coords.latitude;
                     var lon = position.coords.longitude;
-                    // Bikin format link google maps otomatis
                     var linkMaps = "https://www.google.com/maps?q=" + lat + "," + lon;
                     document.getElementById('lokasi').value = linkMaps;
                     alert("Lokasi GPS berhasil dikunci! Link peta otomatis masuk ke kolom lokasi.");
